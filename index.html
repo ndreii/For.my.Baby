@@ -17,7 +17,7 @@
     }
 
     body::before {
-      content: "🦖🦕🦖🦖🦕🦖🦕🦖🦕🦖🦕🦖🦖🦕🦖";
+      content: "🦖🦕🐈🦖🦕🐈🦖🦕🐈🦖🦕🐈🦖🦕";
       font-size: 3rem;
       position: fixed;
       top: 0;
@@ -84,9 +84,9 @@
       line-height: 1.8;
     }
 
-    .back-button {
+    .back-button, .next-button {
       display: inline-block;
-      margin-top: 20px;
+      margin: 10px;
       padding: 10px 20px;
       font-size: 1rem;
       font-weight: bold;
@@ -143,78 +143,32 @@
     <button class="button" onclick="showMessages('stressed')">Open this when you're stressed</button>
     <button class="button" onclick="showMessages('miss')">Open this when you miss me</button>
     <button class="button" onclick="showMessages('tired')">Open this when you're tired</button>
+    <button class="button" onclick="showMessages('angry')">Open this when you're angry with me</button>
+    <button class="button" onclick="showMessages('insecure')">Open this when you're insecure</button>
+    <button class="button" onclick="showMessages('unwell')">Open this when you're not feeling well</button>
+    <button class="button" onclick="showMessages('achievement')">Open this when you achieve something</button>
   </div>
 
   <div id="message-box" class="message-box">
     <p id="message" class="message"></p>
+    <button class="back-button" onclick="previousMessage()">Back</button>
+    <button class="next-button" id="next-button" onclick="nextMessage()">Next</button>
     <button class="back-button" onclick="goBack()">Back to Options</button>
-    <button id="next-button" class="back-button" onclick="nextMessage()">Next</button>
   </div>
 
   <div class="heart" onclick="throwHearts()">❤️</div>
 
   <script>
     const messages = {
-      sad: [
-        "I love you so much. You're never alone.",
-        "I'm always here for you, no matter what.",
-        "You're my everything, and I'll be your support.",
-        "I’m right here for you, through the ups and downs.",
-        "You don’t have to face this alone. I'm with you.",
-        "You are so loved. Don't forget that.",
-        "Whenever you feel low, just know I'm here for you.",
-        "Even when you're sad, my love for you will never change.",
-        "You're stronger than you think. I'm always by your side.",
-        "I love you more than words can say, and I'll never leave."
-      ],
-      happy: [
-        "Seeing you happy makes me so glad. I love you!",
-        "Your smile lights up my world. Keep shining.",
-        "I’m so happy you’re happy. You deserve all the joy.",
-        "Every moment with you is filled with happiness.",
-        "Your happiness is everything to me. Keep smiling.",
-        "I love seeing you smile. It means the world to me.",
-        "You're my sunshine, and your happiness makes my day.",
-        "Your happiness fills my heart with love.",
-        "I'm so grateful for your joy. You're my happiness.",
-        "Keep being happy, my love. I’ll be here for you always."
-      ],
-      stressed: [
-        "Take a deep breath. I'm here for you.",
-        "You don’t have to do it all alone. I'm here.",
-        "I believe in you. You can get through this.",
-        "When you're stressed, just know I'm right here.",
-        "Take a moment for yourself. I’m always with you.",
-        "You’re strong, but I’ll help carry the weight.",
-        "You don’t have to carry everything by yourself. I’m here.",
-        "Don’t worry, everything will be okay. You’ve got this.",
-        "Let me take care of you. You deserve rest.",
-        "I’m here, and together we’ll get through this."
-      ],
-      miss: [
-        "I miss you so much. I can’t wait to see you again.",
-        "Every moment apart makes me miss you more.",
-        "I think about you all the time. You’re always in my heart.",
-        "I miss you more than words can express.",
-        "Being apart is hard, but my love for you stays strong.",
-        "I can’t wait to be with you again. I miss you dearly.",
-        "Even when we're apart, you're always with me in my heart.",
-        "The distance doesn't change how much I love you.",
-        "I miss the sound of your voice and the warmth of your touch.",
-        "I’m counting down the days until I can see you again."
-      ],
-      tired: [
-        "Take a rest, my love. You deserve it.",
-        "You’re doing so well, but remember to take a break.",
-        "I’ll be here for you, resting or working, always by your side.",
-        "Rest now, love. You’ve earned it.",
-        "Whenever you're tired, I’m here to help you recharge.",
-        "Take your time to rest. You’re important to me.",
-        "Rest is important. I’ll be here when you wake up.",
-        "I’ll always be here to support you when you need a break.",
-        "You are so strong, but even the strongest need rest.",
-        "Take it easy. I’m always here to help you unwind."
-      ]
+      sad: Array(100).fill("You are never alone, my love. I am here for you."),
+      happy: Array(100).fill("Seeing you smile is the best part of my day!"),
+      stressed: Array(100).fill("Take it easy, love. I'll help you through this."),
+      miss: Array(100).fill("I miss you so much, and I can't wait to see you."),
+      tired: Array(100).fill("Rest, my love. You deserve all the peace in the world."),
+      angry: Array(100).fill("I’m sorry if I hurt you. I love you so much and want to make things right."),
+      insecure: Array(100).fill("You are perfect to me, just the way you are. I love you endlessly."),
+      unwell: Array(100).fill("Take care, my love. I’m here to make you feel better."),
+      achievement: Array(100).fill("I’m so proud of you! You’re amazing and deserve all the success.")
     };
 
     let currentMessageIndex = 0;
@@ -223,35 +177,28 @@
     function showMessages(type) {
       currentMessages = messages[type];
       currentMessageIndex = 0;
-      const options = document.getElementById('options');
-      const messageBox = document.getElementById('message-box');
-      const message = document.getElementById('message');
-      const nextButton = document.getElementById('next-button');
-
-      options.style.display = 'none';
-      messageBox.style.display = 'block';
-      message.innerHTML = currentMessages[currentMessageIndex];
-      nextButton.style.display = 'block';
+      document.getElementById('options').style.display = 'none';
+      document.getElementById('message-box').style.display = 'block';
+      document.getElementById('message').innerText = currentMessages[currentMessageIndex];
     }
 
     function nextMessage() {
-      const message = document.getElementById('message');
       if (currentMessageIndex < currentMessages.length - 1) {
         currentMessageIndex++;
-        message.innerHTML = currentMessages[currentMessageIndex];
-      } else {
-        nextButton.style.display = 'none';
+        document.getElementById('message').innerText = currentMessages[currentMessageIndex];
+      }
+    }
+
+    function previousMessage() {
+      if (currentMessageIndex > 0) {
+        currentMessageIndex--;
+        document.getElementById('message').innerText = currentMessages[currentMessageIndex];
       }
     }
 
     function goBack() {
-      const options = document.getElementById('options');
-      const messageBox = document.getElementById('message-box');
-      const nextButton = document.getElementById('next-button');
-
-      options.style.display = 'block';
-      messageBox.style.display = 'none';
-      nextButton.style.display = 'none';
+      document.getElementById('options').style.display = 'block';
+      document.getElementById('message-box').style.display = 'none';
     }
 
     function throwHearts() {
