@@ -143,6 +143,10 @@
     <button class="button" onclick="showMessages('stressed')">Open this when you're stressed</button>
     <button class="button" onclick="showMessages('miss')">Open this when you miss me</button>
     <button class="button" onclick="showMessages('tired')">Open this when you're tired</button>
+    <button class="button" onclick="showMessages('angry')">Open this when you're angry with me</button>
+    <button class="button" onclick="showMessages('insecure')">Open this when you're insecure</button>
+    <button class="button" onclick="showMessages('sick')">Open this when you're not feeling well</button>
+    <button class="button" onclick="showMessages('achieve')">Open this when you achieve something</button>
   </div>
 
   <div id="message-box" class="message-box">
@@ -214,6 +218,54 @@
         "I’ll always be here to support you when you need a break.",
         "You are so strong, but even the strongest need rest.",
         "Take it easy. I’m always here to help you unwind."
+      ],
+      angry: [
+        "I'm sorry for making you upset. Let's work it out together.",
+        "I didn’t mean to hurt you. I’m always here to listen.",
+        "I want to make things right. I love you no matter what.",
+        "Let’s take a deep breath and talk it through.",
+        "I'm here for you, always, through all emotions.",
+        "Whatever you’re feeling, I’m here to support you.",
+        "I understand how you feel. We’ll get through this together.",
+        "You mean everything to me, and I never want to upset you.",
+        "Let’s figure this out, side by side. I love you.",
+        "Even when we're angry, my love for you remains."
+      ],
+      insecure: [
+        "You are beautiful, inside and out. Never doubt that.",
+        "You don’t have to be perfect. I love you just as you are.",
+        "You are more than enough. I’m so lucky to have you.",
+        "Your worth isn't based on how you feel. You're amazing.",
+        "I see your strength and beauty every day.",
+        "You are incredible, and I’m proud of you.",
+        "Don't let insecurities hold you back. You're extraordinary.",
+        "You're my everything, and I love you for who you are.",
+        "There’s nothing about you that isn’t perfect to me.",
+        "You are worth all the love in the world. Never forget that."
+      ],
+      sick: [
+        "Rest and recover, my love. I'll be right here.",
+        "Take care of yourself. You mean the world to me.",
+        "I hope you feel better soon. I’m always here for you.",
+        "Even when you’re sick, you’re still the most amazing person.",
+        "Your health is my priority. Rest up, love.",
+        "I’m sending you all my love for a speedy recovery.",
+        "I’m here to take care of you, no matter what.",
+        "I’ll be here, waiting for you to feel better.",
+        "You’re strong, but don’t push yourself too hard. Rest.",
+        "You’re in my thoughts and prayers. Get well soon."
+      ],
+      achieve: [
+        "I’m so proud of everything you’ve accomplished. You’re amazing.",
+        "Your hard work always pays off. Keep shining.",
+        "You’ve achieved so much, and I’m so proud of you.",
+        "Every step forward is a victory. You’ve got this.",
+        "Your achievements are just the beginning of a bright future.",
+        "I’m in awe of your accomplishments. Keep going.",
+        "You’re a star, and your achievements prove it.",
+        "Every milestone is a reason to celebrate you.",
+        "Your success means so much to me. You’re incredible.",
+        "I’m proud of you, always. Keep reaching for the stars."
       ]
     };
 
