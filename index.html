@@ -159,18 +159,6 @@
 
   <script>
     const messages = {
-      sad: [
-        "You are never alone, my love. I am here for you.",
-        "I wish I could give you the biggest hug right now.",
-        "You are stronger than you think, and I believe in you.",
-        "Even in tough times, you are so precious to me.",
-        "Remember, you don’t have to face everything alone.",
-        "You are my safe place, and I hope I can be yours.",
-        "When life gets hard, lean on me. I’m here for you.",
-        "Your happiness matters to me more than anything.",
-        "If you’re feeling sad, just think of my love for you.",
-        "I love you for who you are, even on the tough days.",
-       const messages = {
 sad: [
     "You are never alone, my love. I am here for you.",
     "I wish I could give you the biggest hug right now.",
@@ -998,6 +986,8 @@ unwell: [
     let currentMessages = [];
 
     function showMessages(type) {
+      currentmessages = messages[type];
+      currentmessageIndex = 0;
       const options = document.getElementById('options');
       const messageBox = document.getElementById('message-box');
       const message = document.getElementById('message');
