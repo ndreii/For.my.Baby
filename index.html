@@ -998,7 +998,7 @@ unwell: [
 
         options.style.display = 'none';
         messageBox.style.display = 'block';
-        message.innerHTML = currentMessages[currentMessageIndex];
+        message.textContent = currentMessages[currentMessageIndex];
         nextButton.style.display = currentMessages.length > 1 ? 'block' : 'none';
     }
 }
