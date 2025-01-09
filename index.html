@@ -983,46 +983,37 @@ unwell: [
     ]
   };
   
-  let currentMessageIndex = 0;
+    let currentMessageIndex = 0;
     let currentMessages = [];
 
     function showMessages(type) {
-      // Ensure the type exists in the message object
-      if(messages[type]) {
-      currentMessages = messages[type];
-      currentMessageIndex = 0;
-      
-      const options = document.getElementById('options');
-      const messageBox = document.getElementById('message-box');
-      const message = document.getElementById('message');
-      const nextButton = document.getElementById('next-button');
+        // Ensure the type exists in the messages object
+        if (messages[type]) {
+            currentMessages = messages[type];
+            currentMessageIndex = 0;
 
-      options.style.display = 'none';
-      messageBox.style.display = 'block';
-      message.innerHTML = currentMessages[currentMessageIndex]; // show the first message
-      nextButton.style.display = currentMessages.length > 1 ? 'inline-block' : 'none';
-      }
+            const options = document.getElementById('options');
+            const messageBox = document.getElementById('message-box');
+            const message = document.getElementById('message');
+            const nextButton = document.getElementById('next-button');
+
+            options.style.display = 'none';
+            messageBox.style.display = 'block';
+            message.textContent = currentMessages[currentMessageIndex];
+            nextButton.style.display = currentMessages.length > 1 ? 'inline-block' : 'none';
+        }
     }
 
     function nextMessage() {
-      const message = document.getElementById('message');
-      if (currentMessageIndex < currentMessages.length - 1) {
-        currentMessageIndex++;
-        message.innerHTML = currentMessages[currentMessageIndex];
-      } else {
-        nextButton.style.display = 'none';
-      }
+        currentMessageIndex = (currentMessageIndex + 1) % currentMessages.length;
+        document.getElementById('message').textContent = currentMessages[currentMessageIndex];
     }
 
     function goBack() {
-      const options = document.getElementById('options');
-      const messageBox = document.getElementById('message-box');
-      const nextButton = document.getElementById('next-button');
-
-      options.style.display = 'block';
-      messageBox.style.display = 'none';
-      nextButton.style.display = 'none';
+        document.getElementById('options').style.display = 'block';
+        document.getElementById('message-box').style.display = 'none';
     }
+</script>
 
     function throwHearts() {
       for (let i = 0; i < 20; i++) {
