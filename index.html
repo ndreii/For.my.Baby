@@ -988,7 +988,7 @@ unwell: [
 
     function showMessages(type) {
       // Ensure the type exists in the message object
-      (messages[type]) {
+      if(messages[type]) {
       currentMessages = messages[type];
       currentMessageIndex = 0;
       
