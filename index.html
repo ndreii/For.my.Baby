@@ -987,22 +987,21 @@ unwell: [
     let currentMessages = [];
 
     function showMessages(type) {
-        // Ensure the type exists in the messages object
-        if (messages[type]) {
-            currentMessages = messages[type];
-            currentMessageIndex = 0;
+    if (messages[type]) {
+        currentMessages = messages[type];
+        currentMessageIndex = 0;
 
-            const options = document.getElementById('options');
-            const messageBox = document.getElementById('message-box');
-            const message = document.getElementById('message');
-            const nextButton = document.getElementById('next-button');
+        const options = document.getElementById('options');
+        const messageBox = document.getElementById('message-box');
+        const message = document.getElementById('message');
+        const nextButton = document.getElementById('next-button');
 
-            options.style.display = 'none';
-            messageBox.style.display = 'block';
-            message.textContent = currentMessages[currentMessageIndex];
-            nextButton.style.display = currentMessages.length > 1 ? 'inline-block' : 'none';
-        }
+        options.style.display = 'none';
+        messageBox.style.display = 'block';
+        message.innerHTML = currentMessages[currentMessageIndex];
+        nextButton.style.display = currentMessages.length > 1 ? 'block' : 'none';
     }
+}
 
     function nextMessage() {
         currentMessageIndex = (currentMessageIndex + 1) % currentMessages.length;
