@@ -1,1045 +1,207 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>For the Love of My Life</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      color: white;
-      text-align: center;
-      background: linear-gradient(to bottom, #001f3f, #FF4136);
-      background-attachment: fixed;
-      background-size: cover;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Love</title>
+    <style>
+        /* General Styling */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
 
-    body::before {
-      content: "🦖😻🦕😻🦖😻🦕😻🦖😻🦕😻🦖😻🦕😻🦖😻🦕😻🦖😻🦕";
-      font-size: 3rem;
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: -1;
-      opacity: 0.1;
-      animation: moveBackground 10s linear infinite;
-    }
+        .container {
+            text-align: center;
+            margin: 50px auto;
+            padding: 20px;
+            max-width: 600px;
+            background-color: white;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
 
-    @keyframes moveBackground {
-      0% { top: 0; }
-      100% { top: 100%; }
-    }
+        h1 {
+            color: red;
+        }
 
-    h1 {
-      margin: 20px 0;
-      font-size: 2.5rem;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
-    }
+        .options button {
+            margin: 5px;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            background: linear-gradient(to right, green, red);
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: transform 0.2s;
+        }
 
-    p {
-      font-size: 1.2rem;
-      margin-bottom: 20px;
-    }
+        .options button:hover {
+            transform: scale(1.1);
+        }
 
-    .options {
-      margin-top: 20px;
-    }
+        /* Heart Button */
+        .heart-container {
+            margin-top: 20px;
+        }
 
-    .button {
-      display: inline-block;
-      margin: 10px;
-      padding: 15px 25px;
-      border-radius: 25px;
-      font-size: 1.2rem;
-      font-weight: bold;
-      color: white;
-      background: #2ECC40;
-      text-shadow: 0 2px 2px rgba(0, 0, 0, 0.5);
-      cursor: pointer;
-      border: none;
-      transition: transform 0.2s, box-shadow 0.2s;
-    }
+        #heart {
+            font-size: 25px;
+            cursor: pointer;
+            background: linear-gradient(to right, blue, black);
+            border: none;
+            color: white;
+            padding: 10px;
+            border-radius: 50%;
+        }
 
-    .button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
-    }
+        /* Thrown Hearts Animation */
+        #hearts {
+            position: relative;
+            height: 100px;
+        }
 
-    .message-box {
-      display: none;
-      background: rgba(0, 0, 0, 0.9);
-      padding: 20px;
-      border-radius: 15px;
-      margin: 30px auto;
-      width: 90%;
-      max-width: 600px;
-    }
+        .heart {
+            position: absolute;
+            animation: floatUp 2s ease-in-out infinite;
+        }
 
-    .message {
-      font-size: 1.2rem;
-      line-height: 1.8;
-    }
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px);
+                opacity: 0;
+            }
+        }
 
-    .back-button {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      font-size: 1rem;
-      font-weight: bold;
-      color: #FF4136;
-      background: white;
-      border-radius: 15px;
-      border: none;
-      cursor: pointer;
-    }
+        /* Dino Style */
+        .dino {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+        }
 
-    .heart {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      width: 60px;
-      height: 60px;
-      background: red;
-      color: white;
-      font-size: 2rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      border-radius: 50%;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-    }
+        .dino-text {
+            font-size: 18px;
+            color: black;
+            animation: fadeInOut 4s infinite;
+        }
 
-    .heart-animation {
-      position: fixed;
-      font-size: 2rem;
-      animation: float 2s ease-in-out forwards;
-      opacity: 0;
-    }
-
-    @keyframes float {
-      0% {
-        transform: translateY(0) scale(0.7);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-150px) scale(1.3);
-        opacity: 0;
-      }
-    }
-  </style>
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+    </style>
 </head>
 <body>
-  <h1>For the Love of My Life</h1>
-  <p>Click the options below, and let my love guide you wherever you are.</p>
+    <div class="background"></div>
+    <div class="container">
+        <h1>For My Love ❤️</h1>
+        <p>Choose an option:</p>
+        <div class="options">
+            <button data-option="sad">Open this when you're sad</button>
+            <button data-option="happy">Open this when you're happy</button>
+            <button data-option="stressed">Open this when you're stressed</button>
+            <button data-option="miss">Open this when you miss me</button>
+            <button data-option="tired">Open this when you're tired</button>
+            <button data-option="angry">Open this when you're angry with me</button>
+            <button data-option="insecure">Open this when you're insecure</button>
+            <button data-option="unwell">Open this when you're not feeling well</button>
+            <button data-option="achieve">Open this when you achieve something</button>
+        </div>
+        <div id="message-box">
+            <p id="message"></p>
+            <div class="nav-buttons">
+                <button id="back" style="display: none;">Back</button>
+                <button id="next" style="display: none;">Next</button>
+            </div>
+        </div>
+        <div class="heart-container">
+            <button id="heart">💖</button>
+            <div id="hearts"></div>
+        </div>
+    </div>
+    <div class="dino">
+        <p class="dino-text">I love you</p>
+    </div>
+    <script>
+        const messages = {
+            sad: ["You are amazing.", "Things will get better.", "I'm always here for you."],
+            happy: ["I'm so glad you're happy!", "Your smile lights up my day.", "You make me the happiest!"],
+            stressed: ["Take a deep breath.", "I'm here to help you through this.", "You can handle this!"],
+            miss: ["I miss you too.", "You mean the world to me.", "Counting the days until I see you."],
+            tired: ["Rest, my love.", "You deserve to take it easy.", "Take care of yourself first."],
+            angry: ["I'm sorry if I upset you.", "Let’s talk when you’re ready.", "I love you no matter what."],
+            insecure: ["You are perfect to me.", "I love everything about you.", "Don’t doubt how amazing you are."],
+            unwell: ["I hope you feel better soon.", "I wish I could take your pain away.", "I’m here for you always."],
+            achieve: ["Congratulations!", "I’m so proud of you!", "You inspire me every day."]
+        };
 
-  <div id="options" class="options">
-    <button class="button" onclick="showMessages('sad')">Open this when you're sad</button>
-    <button class="button" onclick="showMessages('happy')">Open this when you're happy</button>
-    <button class="button" onclick="showMessages('stressed')">Open this when you're stressed</button>
-    <button class="button" onclick="showMessages('miss')">Open this when you miss me</button>
-    <button class="button" onclick="showMessages('tired')">Open this when you're tired</button>
-    <button class="button" onclick="showMessages('angry')">Open this when you're angry with me</button>
-    <button class="button" onclick="showMessages('insecure')">Open this when you're insecure</button>
-    <button class="button" onclick="showMessages('unwell')">Open this when you're not feeling well</button>
-    <button class="button" onclick="showMessages('achieve')">Open this when you achieve something</button>
-  </div>
+        const heartMessages = [
+            "You mean everything to me.",
+            "I will always love you.",
+            "You’re my forever and always."
+        ];
 
-  <div id="message-box" class="message-box">
-    <p id="message" class="message"></p>
-    <button class="back-button" onclick="goBack()">Back to Options</button>
-    <button id="next-button" class="back-button" onclick="nextMessage()">Next</button>
-  </div>
+        let currentMessageIndex = 0;
+        let currentMessages = [];
 
-  <div class="heart" onclick="throwHearts()">❤️</div>
-  
-<script>
-    const messages = {
-      sad: [
-    "You are never alone, my love. I am here for you.",
-    "I wish I could give you the biggest hug right now.",
-    "You are stronger than you think, and I believe in you.",
-    "Even in tough times, you are so precious to me.",
-    "Remember, you don’t have to face everything alone.",
-    "You are my safe place, and I hope I can be yours.",
-    "When life gets hard, lean on me. I’m here for you.",
-    "Your happiness matters to me more than anything.",
-    "If you’re feeling sad, just think of my love for you.",
-    "I love you for who you are, even on the tough days.",
-    "No matter what, I’ll always choose you.",
-    "You are the light in my darkest moments.",
-    "I’ll stand by you, even when it feels tough.",
-    "You’re never too much for me to handle.",
-    "Let my love be your comfort in tough times.",
-    "It’s okay to cry, and I’ll be here to wipe your tears.",
-    "You don’t have to be okay all the time, love.",
-    "My love for you is stronger than any sadness.",
-    "Your feelings are valid, and I’m here to listen.",
-    "You are more than enough, always.",
-    "I’ll always be your biggest cheerleader, no matter what.",
-    "Even the stars envy your beauty, my love.",
-    "You’re doing better than you realize.",
-    "Even in sadness, you are my greatest joy.",
-    "You are worth everything and more.",
-    "You have my whole heart, forever.",
-    "The world is better because you’re in it.",
-    "You’re my reason to smile, even when it’s hard.",
-    "Lean on me, love. I’ll carry you when you need it.",
-    "You’re never too broken for my love.",
-    "It’s okay to rest. I’ve got you.",
-    "You deserve all the love in the world, and more.",
-    "Take things one step at a time, love.",
-    "No matter how far, I’ll always be here.",
-    "Even when you’re sad, you make the world brighter.",
-    "My love for you will never falter.",
-    "It’s okay to feel sad. I’m here to hold you.",
-    "Let’s face the storm together, hand in hand.",
-    "You don’t have to do it all alone, love.",
-    "Your heart is so beautiful, even when it’s heavy.",
-    "You are not a burden. You’re my everything.",
-    "You make my life so much brighter, even on dark days.",
-    "I love you endlessly, and I always will.",
-    "It’s okay to feel overwhelmed. I’m here.",
-    "You are so loved, never forget that.",
-    "No matter how low you feel, I’ll lift you up.",
-    "I’ll stay by your side through every storm.",
-    "You don’t have to carry the weight of the world alone.",
-    "You are the reason my heart feels full.",
-    "Your emotions are valid, no matter what they are.",
-    "I love every part of you, even the parts you hide.",
-    "My love for you grows stronger every day.",
-    "You are my heart, and I’ll never let you go.",
-    "You’ve got this, my love. One step at a time.",
-    "Your strength inspires me every single day.",
-    "Lean on me, love. We’re in this together.",
-    "You are my safe space, and I hope I am yours.",
-    "Your smile can light up the darkest night.",
-    "You don’t have to face this world alone.",
-    "Even in sadness, you are my greatest blessing.",
-    "You are loved more than words can express.",
-    "I’ll always see the best in you, no matter what.",
-    "You’ve made my life so much more beautiful.",
-    "Your love is my greatest treasure.",
-    "You are my everything, even when life feels heavy.",
-    "I’ll love you more with every passing day.",
-    "It’s okay to take your time. I’ll wait for you.",
-    "Let’s take on the world together, one day at a time.",
-    "You are the reason I believe in love.",
-    "You’re not alone, love. I’m always with you.",
-    "Even in the darkest times, my love will light the way.",
-    "You’ve made my life brighter just by being you.",
-    "I’ll love you forever, even when times are hard.",
-    "You are my whole world, my love.",
-    "There’s nothing you can’t overcome. I believe in you.",
-    "Let’s face life’s challenges together, my love.",
-    "You’ll never be alone as long as I’m here.",
-    "Your love has made my heart so full.",
-    "You are my safe place in this chaotic world.",
-    "Even on the hardest days, I’m grateful for you.",
-    "I’m so proud of how far you’ve come.",
-    "You are my heart and my home.",
-    "There’s no one else I’d rather face the world with.",
-    "You’ve brought so much light into my life.",
-    "Even when life feels heavy, I’ll lift you up.",
-    "You are more loved than you’ll ever know.",
-    "No matter what happens, I’m here for you.",
-    "You’ve made my life so much better, my love.",
-    "Let’s take life one step at a time, together.",
-    "I’ll always choose you, no matter what.",
-    "You’re my safe space, and I hope I am yours.",
-    "You are my greatest gift, my love."
-  ],
-  happy: [
-    "Your happiness is the light of my life.",
-    "I love seeing your smile; it brightens my whole day.",
-    "You deserve every bit of joy in the world, my love.",
-    "Every time you laugh, my heart feels full.",
-    "Your happiness is my biggest reward.",
-    "I’m so lucky to see you smile every day.",
-    "Your joy is contagious; it makes my world better.",
-    "Keep shining, my love; the world is better with your smile.",
-    "You are the reason my heart is always so full.",
-    "Every moment of your happiness is a treasure to me.",
-    "Your smile is my favorite sight in the world.",
-    "I love how your happiness spreads to everyone around you.",
-    "Seeing you happy is the highlight of my day.",
-    "You deserve all the good things that come your way.",
-    "Your joy fills my heart with so much love.",
-    "I’ll do everything I can to keep that smile on your face.",
-    "You are my sunshine, always making life so bright.",
-    "Every time you’re happy, it feels like the world is right.",
-    "Your happiness means the world to me, love.",
-    "Keep smiling, because your happiness makes me happy too.",
-    "Your laugh is the sweetest sound I’ve ever heard.",
-    "I’m so proud to see you enjoying life’s little moments.",
-    "You have a smile that can light up the darkest night.",
-    "Your happiness inspires me to be better every day.",
-    "Whenever you smile, it feels like a gift to my heart.",
-    "I love how your happiness radiates warmth to everyone.",
-    "You deserve a lifetime of smiles and laughter.",
-    "Seeing you happy is all I could ever wish for.",
-    "Your joy is my greatest accomplishment.",
-    "I love celebrating every happy moment with you.",
-    "You make life so much more colorful and bright.",
-    "I’ll always be here to support your dreams and happiness.",
-    "You are my reason to smile every single day.",
-    "Your happiness makes everything in life worthwhile.",
-    "You have no idea how much your smile means to me.",
-    "Your joy brings peace to my soul, my love.",
-    "You deserve happiness as big as the sky and as endless as the stars.",
-    "I am endlessly grateful for your presence and your smile.",
-    "You light up every room you walk into, my love.",
-    "Your happiness is my greatest motivation in life.",
-    "Your laugh is like music to my ears.",
-    "I’ll always cherish the moments that make you smile.",
-    "You make every day feel like a celebration, my love.",
-    "Your happiness is the foundation of my own joy.",
-    "You deserve every bit of happiness this world has to offer.",
-    "I love how your joy makes my heart dance.",
-    "I hope you never stop chasing what makes you happy.",
-    "Your happiness makes all the challenges in life worth it.",
-    "You bring so much light into my life with your joy.",
-    "Whenever you’re happy, it feels like the world is perfect.",
-    "Your joy makes every moment feel special and magical.",
-    "I love how your happiness lights up everyone around you.",
-    "Your smile has a way of melting all my worries away.",
-    "You are my happy place, my reason to smile every day.",
-    "Every time you’re happy, I fall in love with you all over again.",
-    "Your happiness brings me so much peace and love.",
-    "I’ll always do my best to make you smile, my love.",
-    "You are the light of my life, and your joy is my reward.",
-    "I adore the way you make happiness look so effortless.",
-    "You are the sunshine on a cloudy day, my love.",
-    "Your happiness is my top priority, now and always.",
-    "Seeing you happy makes every effort worthwhile.",
-    "I love how your joy adds meaning to every moment.",
-    "You make happiness look so beautiful, my love.",
-    "I’ll always treasure the moments that make you smile.",
-    "Your happiness is my greatest accomplishment, love.",
-    "Every day with you feels like a celebration of joy.",
-    "You have a way of turning ordinary moments into magic.",
-    "Your laugh is my favorite sound in the entire world.",
-    "You’re the reason I look forward to every single day.",
-    "I love seeing you happy; it makes my heart soar.",
-    "Your happiness is the anchor that keeps me steady.",
-    "You bring so much joy into my life, my love.",
-    "Every moment with you is a moment filled with happiness.",
-    "Your smile is the greatest gift I could ever receive.",
-    "I love how your happiness makes everything better.",
-    "You deserve all the happiness in the universe, my love.",
-    "Your joy is my inspiration to keep moving forward.",
-    "Whenever you’re happy, my heart feels complete.",
-    "You are my greatest joy, my love.",
-    "You bring so much happiness into my life every single day.",
-    "I’ll always be here to celebrate every moment of your joy.",
-    "Your happiness is the most beautiful thing in my life.",
-    "I am so grateful to be part of your happiness, my love.",
-    "You make every moment feel like a dream come true.",
-    "Your joy is the light that guides me through everything.",
-    "You are my happiness, my love, my everything.",
-    "Every time you’re happy, it feels like the world smiles too.",
-    "I’ll always be your biggest supporter and your greatest fan.",
-    "Your happiness fills my heart with so much warmth and love.",
-    "I love you more than words can ever express, my joy.",
-    "Your smile is my favorite sight, and your happiness my favorite sound.",
-    ],
-  stressed: [
-    "Take a deep breath. I’m here for you, always.",
-    "You don’t have to face this alone. I’m by your side.",
-    "I believe in you. You can handle anything that comes your way.",
-    "When life gets heavy, remember I’m here to help carry the load.",
-    "Take it one step at a time, and remember, I’m here to support you.",
-    "Even on the hardest days, you’ve got me right beside you.",
-    "I know it feels tough now, but I’m with you every step of the way.",
-    "You are so strong. I’ll be right here if you need a shoulder to lean on.",
-    "It’s okay to take a break. You deserve to rest, and I’m here to help.",
-    "Whenever you feel overwhelmed, just remember you’re never alone.",
-    "I’m here for you, no matter what. You don’t have to do this on your own.",
-    "Take a moment to breathe. Everything will be okay. I’m here.",
-    "You are doing amazing, even if it doesn’t always feel like it.",
-    "Don’t worry, love, I’m right here to calm your mind.",
-    "Let’s take a deep breath together. You’re stronger than you know.",
-    "Whenever you feel stressed, just think of me holding you close.",
-    "I know it’s hard right now, but I’m always here to make it easier.",
-    "You’ve got this, and I’ve got you.",
-    "Even in the storm, I’ll be your calm.",
-    "No matter how tough things get, I will never leave your side.",
-    "It’s okay to feel stressed, but don’t forget to reach out to me when you need help.",
-    "You don’t have to do everything at once. Take it slow, and take care of yourself.",
-    "I’m here for you through every challenge, every stress, and every tear.",
-    "You are not alone, and I’m always just a message away.",
-    "Take it easy, love. I’m right here supporting you every step of the way.",
-    "Whatever you’re feeling, I’ll be here to listen and comfort you.",
-    "Don’t forget to breathe, my love. I’m here to help you through this.",
-    "Even on your toughest days, you still have my love and support.",
-    "I believe in you, and together, we can get through anything.",
-    "You’re allowed to take a break and let go of the pressure. I’m here for you.",
-    "You are capable of overcoming anything, and I’ll always be right by your side.",
-    "You’ve got my support, always. Let’s take on this stress together.",
-    "Take it one moment at a time, and lean on me when you need strength.",
-    "I’m so proud of you for how strong you are through all this.",
-    "When it feels overwhelming, just remember you have me, and we can face it together.",
-    "You don’t have to be perfect. Just take things as they come. I’m here.",
-    "I know it’s hard right now, but I’m here to remind you that you are stronger than you think.",
-    "If you need a break or just someone to talk to, I’m always here.",
-    "Don’t carry everything by yourself. I’m here to help lighten your load.",
-    "You’ve handled so much, and I’m here to help you when you need it most.",
-    "When you’re feeling stressed, let me remind you that I love you so much.",
-    "You’re doing your best, and that’s enough. I’m here to support you.",
-    "Let’s tackle this stress together. You’re not alone in this.",
-    "Take a deep breath. I’m right here, holding your hand through it all.",
-    "You can get through this, and I’ll be right by your side the whole way.",
-    "I’m always here to listen, to comfort, and to support you.",
-    "It’s okay to feel overwhelmed, but know that I’m here to help carry the weight.",
-    "Remember to take a break when you need it. You deserve rest, and I’m here to help you unwind.",
-    "I see how hard you’re working, and I’m so proud of you.",
-    "When you need to talk or just need a shoulder to lean on, I’ll always be here.",
-    "You don’t have to do it all on your own. I’m here to share the load.",
-    "You’re doing so much, and I just want you to know I’m here to help you through it all.",
-    "Even when things feel tough, I’m here, loving you and supporting you.",
-    "I’ll always be here to listen, to comfort you, and to remind you that you are amazing.",
-    "Don’t carry this weight by yourself. Let me help lighten the load.",
-    "When you feel stressed, close your eyes and know I’m here for you.",
-    "I’ll be here to calm your nerves and remind you of your strength.",
-    "No matter how overwhelming it gets, I’m here to remind you that you are strong.",
-    "You are capable of so much, and I’m always here to cheer you on.",
-    "When you’re stressed, take a moment to breathe. I’m here to help you find peace.",
-    "You are doing so well, even if you feel overwhelmed. I’m here to encourage you.",
-    "When the stress gets heavy, just know you don’t have to carry it alone.",
-    "No matter how hard things get, I’ll always be here to make it better.",
-    "I’ll always be your calm in the storm, reminding you that everything will be okay.",
-    "You are handling everything so well, and I’m here to support you through it all.",
-    "Take one step at a time, and don’t forget that I’m here to hold your hand through it.",
-    "Whenever you feel overwhelmed, just take a deep breath and know I’m here for you.",
-    "You don’t have to do everything on your own. Let’s face this stress together.",
-    "You’re stronger than you realize, and I’m always here to remind you of that.",
-    "When life gets tough, I’ll be the one to remind you that you’ve got this.",
-    "Even when everything feels like too much, you have my unwavering support.",
-    "Take a break and relax; I’m always here when you need a moment of peace.",
-    "You’re doing amazing, and I’ll be here to remind you of that whenever you need.",
-    "Even when the pressure is high, you’ve got me by your side to help you through it.",
-    "You’re stronger than any stress you’re feeling right now, and I’m here to remind you.",
-    "Take it slow, breathe, and remember I’m right here with you.",
-    "You are not alone in this. I’ll be right here, every step of the way.",
-    "When you’re feeling stressed, just know I’m always here to offer a helping hand.",
-    "You’ve got so much strength within you, and I’m always here to support you.",
-    "Whenever you need to talk or just need some comfort, I’m always here for you.",
-    "You are doing great. I’m proud of you and everything you’re managing right now.",
-    "Take a deep breath, and remember that I’m here to walk through this with you.",
-    "You’ve got this, and I’m here to remind you that you’re never alone.",
-    "You are not alone in this, and together we can handle anything that comes our way.",
-    "When life gets tough, just remember that you have my heart and my support.",
-    "You are so strong, and I’ll always be here to remind you of that, especially when things are hard."
-    ],
-miss: [
-    "I miss you so much. I can’t wait to see you again.",
-    "Every moment apart makes me miss you more.",
-    "I think about you all the time. You’re always in my heart.",
-    "I miss you more than words can express.",
-    "Being apart is hard, but my love for you stays strong.",
-    "I can’t wait to be with you again. I miss you dearly.",
-    "Even when we're apart, you're always with me in my heart.",
-    "The distance doesn't change how much I love you.",
-    "I miss the sound of your voice and the warmth of your touch.",
-    "I’m counting down the days until I can see you again.",
-    "I miss you so much. The distance just makes my love grow stronger.",
-    "Every moment without you feels like a lifetime.",
-    "I miss everything about you, even the little things.",
-    "My heart aches to be near you again. I miss you so much.",
-    "I miss your laugh, your smile, and just being close to you.",
-    "Not a day goes by that I don’t think about you. I miss you more than you know.",
-    "I miss you so much it hurts, but I know we’ll be together soon.",
-    "I miss the way you make everything better just by being there.",
-    "Even though we're apart, you’re always in my thoughts.",
-    "The more time apart, the more I realize how much I need you.",
-    "I miss your warmth, your touch, and the way you make me feel loved.",
-    "No matter how far apart we are, my love for you never fades.",
-    "I wish I could hold you right now. I miss you so much.",
-    "I can’t wait to feel your hug again. I miss you more than you know.",
-    "Being apart is tough, but knowing we’ll be together again makes it easier.",
-    "I miss your voice. It’s the sweetest sound to my ears.",
-    "Every second without you feels like a lifetime.",
-    "I miss the way you light up my world with your presence.",
-    "I’m counting the moments until I get to see you again. I miss you.",
-    "I miss the way you make me feel safe and loved. You’re everything to me.",
-    "I miss the way you look at me like I’m the only one in the world.",
-    "I can't wait to be in your arms again. I miss you so much.",
-    "You’re always in my heart, even when we’re apart.",
-    "I can’t wait to create more memories with you. I miss you dearly.",
-    "I miss your smile, your laugh, and the way your presence fills up the room.",
-    "Every day without you feels incomplete. I can’t wait to see you again.",
-    "I miss you like crazy. You mean the world to me.",
-    "I think of you constantly, and I miss you more than you can imagine.",
-    "Even when we’re apart, my love for you never fades.",
-    "I can't stop thinking about how much I miss you.",
-    "I miss everything about you, from the way you talk to the way you smile.",
-    "You’re the first thing on my mind when I wake up, and the last thing when I go to sleep.",
-    "I miss holding your hand and sharing quiet moments together.",
-    "I miss being close to you, feeling your warmth beside me.",
-    "The distance only makes me love you more. I miss you so much.",
-    "I miss the way you make every moment feel special.",
-    "No matter the distance, you will always be in my heart.",
-    "I miss the sound of your voice, the way it brings me peace.",
-    "I miss our little conversations, the way we just connect.",
-    "When I close my eyes, I can feel your presence, and it makes me miss you even more.",
-    "I miss the way we laugh together, how our hearts beat as one.",
-    "It’s hard being away from you, but I know that the distance will only make our bond stronger.",
-    "I miss your hugs, your kisses, and just being near you.",
-    "I miss the way you make everything better just by being there.",
-    "You are always on my mind, and I miss you with all my heart.",
-    "I miss your energy, your smile, your laughter. You brighten up my world.",
-    "No matter how much time passes, I will always miss you.",
-    "I can’t wait to hold you again. I miss you so much.",
-    "Even though we’re apart, I know our love is growing stronger every day.",
-    "I miss your touch, your scent, and the way you make me feel like home.",
-    "I miss the little things you do that make me smile.",
-    "It’s hard not being able to see you, but I know our love is worth the wait.",
-    "I miss everything about you, but I know that soon we’ll be together again.",
-    "I miss your love, your kindness, and your presence in my life.",
-    "I miss the way your smile lights up my world. I can’t wait to see you again.",
-    "I’m holding onto the memory of you, and it’s the only thing that keeps me going.",
-    "I miss your voice, the sound of your laughter. It’s what I long for every day.",
-    "I can’t wait to hold you again and never let go. I miss you.",
-    "I miss the way we talk about everything and nothing at all.",
-    "I miss the warmth of your love. I can’t wait to feel it again.",
-    "Every moment without you feels like it’s missing something important.",
-    "I miss the way you make every day feel like a beautiful adventure.",
-    "I can’t stop thinking about you. You mean everything to me.",
-    "I miss you so much that sometimes it feels like my heart is aching.",
-    "The best part of my day is the moment I get to see you again. I miss you.",
-    "I miss you more than words can describe. I’m counting the days until I see you.",
-    "When we’re apart, I hold you close in my heart. I miss you dearly.",
-    "I can’t wait to be with you again and never have to say goodbye.",
-    "I miss the way you make me feel loved, cherished, and safe.",
-    "Every day that passes, I miss you more. I can’t wait to be in your arms again.",
-    "You’re always in my thoughts, and I miss you so much.",
-    "The distance is hard, but knowing that we’ll be together again makes it easier.",
-    "I miss everything about you, from your smile to the way you talk to me.",
-    "No matter how far apart we are, you’re always with me in my heart.",
-    "I can’t wait to hold you close again. I miss you with all my heart.",
-    "I miss you so much. The days feel longer without you by my side.",
-    "Every second without you feels like an eternity.",
-    "I miss you so much it hurts. I can’t wait to see you again.",
-    "I miss the way you make everything feel right, even when life is tough.",
-    "Even though we’re apart, our love is only getting stronger.",
-    "I miss the little things you do, the way you make me feel so special.",
-    "I miss you with all my heart, and I can’t wait to be in your arms again.",
-    "I miss the way you make me laugh and feel at ease.",
-    "I miss the warmth of your love. I can’t wait to feel it again.",
-    "The distance makes me miss you more, but it also makes me realize how much I love you.",
-    "I miss you more than you could ever know. You’re always on my mind.",
-    "I can’t wait to see you again, to hold you close, and to never let go.",
-    "Even though we’re apart, you’re still the most important person in my life. I miss you.",
-    "I miss the sound of your voice, the way you make everything feel better.",
-    "Every day apart makes me appreciate you even more. I miss you so much.",
-    "I miss the way we talk for hours, just enjoying each other’s company.",
-    "I miss the way you make me feel at home, no matter where we are.",
-    "I miss you more with each passing day. I can’t wait to be with you again.",
-    "I miss you, and every moment apart just makes me love you even more."
-  ],
-tired: [
-    "Take a rest, my love. You deserve it.",
-    "You’re doing so well, but remember to take a break.",
-    "I’ll be here for you, resting or working, always by your side.",
-    "Rest now, love. You’ve earned it.",
-    "Whenever you're tired, I’m here to help you recharge.",
-    "Take your time to rest. You’re important to me.",
-    "Rest is important. I’ll be here when you wake up.",
-    "I’ll always be here to support you when you need a break.",
-    "You are so strong, but even the strongest need rest.",
-    "Take it easy. I’m always here to help you unwind.",
-    "Rest up, my love. You’ve been working so hard.",
-    "I know you’ve been pushing yourself, and I’m so proud of you.",
-    "You’re doing amazing, but don’t forget to take care of yourself.",
-    "Rest is just as important as everything else. Take a break.",
-    "You deserve some time to relax. I’m here for you, always.",
-    "Even when you’re tired, you’re still incredible to me.",
-    "Take a deep breath, my love. Everything will be okay after you rest.",
-    "Resting doesn’t mean you’re giving up. It means you’re recharging.",
-    "You work so hard, and I’m proud of everything you do.",
-    "I’m here for you, whether you’re tired or not. Always by your side.",
-    "Remember to rest, love. You can’t pour from an empty cup.",
-    "Take it slow today. I’m here to make sure you feel better.",
-    "I can help make you feel better. Just rest and relax.",
-    "You’ve done so much today. Now it’s time to rest.",
-    "Take care of yourself, love. You’re everything to me.",
-    "It’s okay to rest. You’ve earned it.",
-    "You’re doing so well, and I’m here whenever you need me.",
-    "You’ve got this, but please take a moment to rest.",
-    "Your hard work is noticed. Now take a well-deserved break.",
-    "You are amazing, and I want you to feel your best. Rest up.",
-    "Don’t feel guilty for taking a break. Your health comes first.",
-    "I’ll be here waiting for you, ready to support you after you rest.",
-    "You’re stronger than you know, but everyone needs rest. Take a break.",
-    "I know you’re tired, but you’re doing great. Just rest, love.",
-    "I’ll always be here for you, even when you need time to rest.",
-    "You’ve been working hard, and now it’s time to recharge.",
-    "I want you to feel rested and loved. Take all the time you need.",
-    "You are enough, even on your tired days.",
-    "Take a moment for yourself, love. You deserve to feel better.",
-    "It’s okay to take a break. You’ve done so much today.",
-    "You work hard every day, and I admire your strength. Rest now.",
-    "Your well-being matters to me. Please take care of yourself.",
-    "Take your time. Rest now, and everything will be okay.",
-    "You’re always so strong. Let me help you feel relaxed.",
-    "Rest your body, and I’ll take care of everything else.",
-    "When you’re tired, it’s okay to pause and just be.",
-    "Let go of the stress, and let yourself rest.",
-    "You’re not alone when you're tired. I’m right here with you.",
-    "I believe in you. Now, take care of yourself.",
-    "You’re doing great, but it’s time to rest now.",
-    "I’ll support you through all your tired moments.",
-    "Don’t worry, love. Rest now, and we’ll face tomorrow together.",
-    "Your strength is inspiring, but it’s okay to rest when you need it.",
-    "I’m so proud of how hard you work. Take a break, love.",
-    "Rest and feel recharged. You’re doing amazing.",
-    "You deserve all the rest in the world, love.",
-    "Rest now. You’ve earned every bit of it.",
-    "Whenever you’re tired, I’m here to remind you how loved you are.",
-    "You’re always working hard. Don’t forget to take care of yourself too.",
-    "You’ve been amazing. Now it’s time for you to take care of you.",
-    "When you feel tired, know that I’m always here for you.",
-    "Take a moment to rest. Your well-being is my priority.",
-    "You’re allowed to rest, love. You’re worth it.",
-    "Take care of your mind and body. You’re so important to me.",
-    "It’s okay to rest. I’m proud of everything you do.",
-    "Rest is a sign of strength. You’re doing great.",
-    "You’re a warrior, but even warriors need rest.",
-    "I’m proud of your hard work. Now it’s time to recharge.",
-    "Take a break, love. You’ve earned it a hundred times over.",
-    "You are loved, especially when you’re tired and need rest.",
-    "I’ll be right here when you’re ready to recharge. I love you.",
-    "Your efforts never go unnoticed. Rest and take care of yourself.",
-    "I admire your hard work, and I want you to feel your best.",
-    "You’re doing so much, but you need rest to keep going.",
-    "I’m always here, whether you’re rested or tired.",
-    "Rest now, and I’ll be here to support you through everything.",
-    "Even when you’re tired, you are everything to me.",
-    "Take all the rest you need. I’ll be here when you wake up.",
-    "You are strong, but you need rest to keep shining.",
-    "You deserve all the relaxation you can get. Rest easy.",
-    "Don’t worry about anything. Just rest now and feel better.",
-    "You’re amazing, but even superheroes need a break.",
-    "Take care of yourself, and know that I’ll always be here for you."
-  ],
-angry: [
-    "I know you're upset right now, but I’ll always be here to listen.",
-    "It’s okay to be angry, love. Just know I’m here for you, no matter what.",
-    "Even when you’re angry, I’m not going anywhere. I’m here with you.",
-    "I understand you're upset, but I’m here to work through this with you.",
-    "You can be angry, but I’ll never stop loving you.",
-    "I know things aren’t easy right now, but I’ll always stand by you.",
-    "When you're angry, know that you’re still loved and cared for.",
-    "It's okay to feel angry, love. I’m right here with you through it all.",
-    "I understand that you're upset, and I’ll be here to help you through it.",
-    "Take your time to be angry, but know that I’m here when you're ready to talk.",
-    "Anger is normal, but love is stronger. I’ll always be here for you.",
-    "You can be upset, but I will always be by your side, no matter what.",
-    "I may not understand exactly why you're angry, but I’m here to listen.",
-    "Even when you're angry, you're still my world, and I’m here for you.",
-    "I know you're frustrated, but I’m not going anywhere. I love you.",
-    "Take your time to cool down. I’m right here when you're ready to talk.",
-    "I understand your frustration. Let’s work through this together.",
-    "You’re allowed to be angry, and I’m here to support you through it.",
-    "I’ll give you space if you need it, but I’ll always be here when you're ready.",
-    "You can be angry, love, but remember I’m always on your side.",
-    "Even when you're angry, we’re in this together.",
-    "Take a deep breath. I’m here for you, no matter how angry you are.",
-    "Anger doesn’t change how much I love you. I’m here for you always.",
-    "It’s okay to be angry. I’ll give you the space you need.",
-    "I know you’re upset, but I’m not going anywhere. Let’s talk when you're ready.",
-    "When you're angry, know that I’m here to listen and understand.",
-    "I understand your frustration, and I’m here to work through it with you.",
-    "I’ll never leave you, even when you're angry. We’ll work through this together.",
-    "I may not always have the right words, but I’ll always be here to listen.",
-    "Anger comes and goes, but my love for you remains constant.",
-    "Take a moment to be angry, and then know that I’ll be here for you.",
-    "I understand you’re upset. Just know I’m here whenever you’re ready.",
-    "I’m here to support you, even when you're angry.",
-    "Anger won’t change how much I love you, and it never will.",
-    "Take all the time you need. I’ll be right here when you’re ready to talk.",
-    "I know you’re angry, but my love for you doesn’t waver.",
-    "I’m here for you, through the anger and the love.",
-    "I understand you’re upset. Just know that I’ll always be here for you.",
-    "Even when you're angry, I’m ready to listen and support you.",
-    "I know it’s hard right now, but I’m not going anywhere.",
-    "I’m here with you, through the anger and everything else.",
-    "Take your time. I’ll be here when you're ready to talk.",
-    "I understand that you're angry, but we’ll get through this together.",
-    "Your feelings matter, even when they’re full of anger. I’m here for you.",
-    "Anger is just a moment. My love for you lasts forever.",
-    "It’s okay to be upset. I’m right here for you.",
-    "When you’re angry, I’m here to listen and support you.",
-    "Anger doesn’t change how much I care about you.",
-    "Take a breath, and I’ll be right here with you.",
-    "I know you're upset, but we’ll figure this out together.",
-    "Even when you're angry, you’re still the most important person to me.",
-    "I’m not going anywhere. We’ll get through this together.",
-    "Your anger doesn’t scare me. I’ll be here when you're ready to talk.",
-    "Take your time, but know I’ll always be by your side.",
-    "Even in anger, you’re still my love, and I’m here for you.",
-    "When you're ready, I’ll be here to listen, love, and support you.",
-    "Anger won’t change how much I care about you. I’m here, always.",
-    "I understand your frustration, and I’ll be here when you’re ready.",
-    "It’s okay to be angry, but I’m here to help make it better.",
-    "I’ll give you space, but know that I’m still here for you.",
-    "You’re angry, but my love for you doesn’t change. I’m here for you."
-  ],
-insecure: [
-    "You are more than enough, just as you are.",
-    "You are worthy of love and happiness.",
-    "You don’t need to be perfect to be amazing.",
-    "I see so much strength in you, even on your hardest days.",
-    "I’m here for you, and I believe in you.",
-    "You are unique, and that’s what makes you special.",
-    "Your worth is not defined by your doubts.",
-    "You are loved deeply, just as you are.",
-    "Don’t let insecurity make you forget how incredible you truly are.",
-    "You don’t need to prove anything to anyone. You’re perfect just as you are.",
-    "I’m proud of you, and I will always stand by you.",
-    "You are stronger than you think. Don’t doubt yourself.",
-    "Your kindness, beauty, and strength shine through in everything you do.",
-    "No one else can be you, and that is your superpower.",
-    "You are worthy of all the love and success that comes your way.",
-    "Every day you amaze me with your strength and kindness.",
-    "Your value is immeasurable, even on the days you don’t feel it.",
-    "I’m here for you, no matter how you feel about yourself.",
-    "You are worthy of all the good things life has to offer.",
-    "Believe in yourself, because I believe in you.",
-    "Your imperfections are what make you perfectly you.",
-    "You don’t need to be anyone else. You’re perfect as you are.",
-    "I’m so proud of you for everything you’ve accomplished.",
-    "You don’t need to compare yourself to anyone else. You are enough.",
-    "Your worth isn’t determined by what others think of you.",
-    "I see your beauty, your strength, and everything that makes you incredible.",
-    "You are enough, and I love you for exactly who you are.",
-    "There’s no one like you, and that’s something to celebrate.",
-    "You are amazing just as you are, flaws and all.",
-    "Insecurity may cloud your mind, but I’m here to remind you of your worth.",
-    "You are loved for the person you are, not the one you think you should be.",
-    "You are more than enough. Don’t let anyone make you feel otherwise.",
-    "You are a beautiful person, inside and out.",
-    "I admire your courage and strength, even when you doubt yourself.",
-    "You deserve to love yourself as much as I love you.",
-    "Your uniqueness is your power. Embrace it.",
-    "Even on your insecure days, I see the amazing person you are.",
-    "You’re worthy of all the love and happiness in the world.",
-    "You have so much to offer, and I’m lucky to be with you.",
-    "I’m proud of who you are, and I wouldn’t change a thing about you.",
-    "You don’t need to change for anyone. You are perfect as you are.",
-    "Even when you feel insecure, know that you are loved and supported.",
-    "You are enough, just the way you are.",
-    "It’s okay to feel insecure, but don’t let it define you.",
-    "You have so much to offer the world. Don’t forget that.",
-    "You are one of a kind, and that’s something to be proud of.",
-    "I love you for all of who you are, and nothing will ever change that.",
-    "You are worthy of love, kindness, and everything good in life.",
-    "You are beautiful, both inside and out, and I’m so lucky to know you.",
-    "Your self-doubt doesn’t change how amazing you are.",
-    "You are worthy of all the good things that come your way.",
-    "I love the person you are, and I will always be by your side.",
-    "Don’t let insecurities take away from your incredible spirit.",
-    "You are enough exactly as you are. Don’t forget that.",
-    "You have everything you need to succeed. Believe in yourself.",
-    "You’re stronger than any insecurities you may face.",
-    "I love you for everything that you are.",
-    "You are a beautiful person, and I am proud of you.",
-    "Your heart is pure, and that’s what makes you shine.",
-    "Don’t let your insecurities dim your light. You are a star.",
-    "I believe in you, even when you don’t believe in yourself.",
-    "You’re amazing, and don’t ever let anyone make you think otherwise.",
-    "I’m so proud of who you are, and I’ll always be here for you.",
-    "You don’t need anyone else’s approval. You’re perfect as you are.",
-    "You are worthy of love and everything beautiful in life.",
-    "I love you for your imperfections. They make you unique and special.",
-    "Your strength is inspiring, even on the days you feel insecure.",
-    "I see your worth, even when you can’t see it yourself.",
-    "You are more than enough, and I will always remind you of that.",
-    "You are exactly who you’re meant to be.",
-    "No one else can be you, and that’s something to be proud of.",
-    "You are loved deeply, and nothing will ever change that.",
-    "I will always remind you of your worth, even when you forget.",
-    "You are worth so much more than you realize.",
-    "Don’t let insecurity steal your peace. You are amazing just as you are.",
-    "You are perfect in your own way, and I love you for it."
-  ],
-unwell: [
-    "I hope you feel better soon. Rest up, love.",
-    "Take care of yourself, and let me know if you need anything.",
-    "I’m here for you, love. Get well soon.",
-    "I know you’re not feeling your best, but you’re strong and will get through this.",
-    "Rest and take care. I’m sending you all my love.",
-    "Your health is so important. Take it easy and get better soon.",
-    "I’m here if you need anything, even if it’s just a comforting word.",
-    "I hope each day brings you closer to feeling better.",
-    "I’m thinking of you and hoping you feel better soon.",
-    "Don’t worry about anything. Focus on getting better. I’m here for you.",
-    "Take it easy, love. You’ll be back to feeling your best soon.",
-    "You deserve rest and care right now. Get well soon.",
-    "I’m sending you healing thoughts. You’ll feel better soon.",
-    "Take all the time you need to rest. Your health comes first.",
-    "I’m here for you, and I’ll help in any way I can.",
-    "Focus on getting better. Everything else can wait.",
-    "Wishing you strength and comfort as you recover.",
-    "Take it one day at a time, and know I’m right here with you.",
-    "I’ll be here to support you through this. Get well soon.",
-    "You are loved, and I’m wishing you all the comfort and healing.",
-    "Rest and take care of yourself. I’m here when you’re ready.",
-    "You’ll feel better soon. Just take care of yourself for now.",
-    "I’m here for you, no matter what. Get well soon.",
-    "Take all the time you need to heal. I’m here for you.",
-    "I hope you feel better soon, love. I’m thinking of you.",
-    "Your health is what matters most right now. Get well soon.",
-    "I’m sending all my love to you, wishing you a speedy recovery.",
-    "Rest up and take care of yourself. I’m here when you’re ready.",
-    "You’ve got this, love. I know you’ll get better soon.",
-    "I hope you find comfort and healing in the days ahead.",
-    "You’re always in my thoughts. Take care of yourself, love.",
-    "Take it easy and focus on getting better. You’re strong, and you’ll recover.",
-    "Wishing you a quick recovery, my love. You’ll be back on your feet soon.",
-    "I’m sending all my positive thoughts your way. Get well soon.",
-    "Take care, and don’t worry about anything else right now. You’re important to me.",
-    "You deserve all the care and rest right now. Get well soon.",
-    "Your well-being matters to me. Rest up and feel better soon.",
-    "I hope you find comfort and healing soon, love.",
-    "I’m here to support you. Just focus on getting better.",
-    "I’m thinking of you and hoping for a speedy recovery.",
-    "I’m always here for you, even when you’re not feeling well.",
-    "Take your time to rest and heal. You’ll be back to feeling better soon.",
-    "Wishing you peace, comfort, and a quick recovery.",
-    "I hope you feel better soon. You’re always in my thoughts.",
-    "Take care, love. I’m sending healing energy your way.",
-    "I hope you find strength and comfort as you heal.",
-    "Rest up and take care of yourself. I’m here for you, always.",
-    "You are loved, and I’m sending all my healing thoughts to you.",
-    "Wishing you a speedy recovery, love. Take care of yourself.",
-    "You’re stronger than you know. Get well soon.",
-    "Rest and take care, love. I’m here for you through it all.",
-    "Take it slow and focus on healing. I’m sending you love and comfort.",
-    "I’m here for you, love. Take all the time you need to feel better.",
-    "Get well soon, my love. You deserve all the care right now.",
-    "I hope each day brings you closer to feeling like yourself again.",
-    "Take care of yourself, love. You’ll be feeling better soon.",
-    "Rest easy and know that I’m here for you, always.",
-    "Sending you love and good thoughts for a quick recovery.",
-    "Take it easy, love. You’re in my thoughts as you heal.",
-    "I’m here to help you however I can. Rest and take care.",
-    "You’re strong, and you’ll feel better soon. Take it slow.",
-    "Take care, and know that I’m always here for you.",
-    "Wishing you comfort and healing. You’re in my thoughts.",
-    "You’re stronger than this. Rest up, and you’ll feel better soon.",
-    "Rest up, and I’ll be here when you’re feeling better.",
-    "Sending all my love and healing thoughts your way.",
-    "Take care of yourself, and remember I’m always here for you.",
-    "Focus on getting better. I’m here whenever you need me.",
-    "I’m thinking of you, and I’m hoping you find comfort and healing.",
-    "Rest up and feel better soon, you deserve it.",
-    "I’m here to support you in any way I can. Get well soon, love.",
-    "You are in my thoughts. Wishing you a speedy recovery.",
-    "Take care of yourself. I’m sending you all my positive energy.",
-    "I’m so proud of how strong you are. Take it easy, and get better soon.",
-    "I’m here for you through it all. Rest and heal, love.",
-    "Sending healing vibes your way. I hope you feel better soon.",
-    "Wishing you comfort, rest, and a speedy recovery. You got this.",
-    "Take good care of yourself. I’m here for you every step of the way.",
-    "Rest easy, love. I’ll be here when you’re feeling better.",
-    "You’re so loved, and I’m sending you all my best wishes for healing.",
-    "Just focus on resting and getting better. I’m here if you need anything.",
-    "I hope you find peace and comfort as you recover. Take care of yourself.",
-    "Take your time to heal, love. I’m sending all my support your way.",
-    "You’re never alone in this. I’m here for you always.",
-    "Rest and take care, love. You’re always in my heart and thoughts.",
-    "Sending you lots of love and wishing you a quick recovery.",
-    "I know it’s hard, but I believe in you. Rest up and heal well.",
-    "Take care of yourself, and know that I’m here for you through it all.",
-    "Wishing you comfort and strength as you rest and recover.",
-    "Take it slow and get plenty of rest. You’ll feel better soon, love.",
-    "I’m so thankful for you, and I hope you get better soon.",
-    "Rest and focus on getting better, love. I’m right here for you.",
-    "You deserve all the care and comfort right now. Take care, love.",
-    "You’re so strong, and I’m here for you every step of the way.",
-    "Rest up and feel better soon. You have so much love and support around you.",
-    "Get well soon, love. You’re in my heart, and I’m thinking of you.",
-    "Sending all my love and healing thoughts your way. Take care of yourself.",
-    "I’m so proud of how you’re handling this. Rest up and get well soon.",
-    "Take care of yourself. I’m always here to help, love.",
-    "You’re in my thoughts and prayers. I hope you feel better soon.",
-    "Take it easy and rest. You’ll be feeling better in no time, love.",
-    "I’m here for you always. Rest up and focus on getting better.",
-    "You’re so loved, and I’m sending you all the warmth and healing energy.",
-    "Sending healing thoughts to you. You’ll be back to your best soon.",
-    "I know this is tough, but I’m here to support you through it.",
-    "Focus on taking care of yourself, and everything else can wait.",
-    "You’re a fighter, and I know you’ll get through this. Take care, love.",
-    "I’m thinking of you, and I hope you feel better soon. Rest and heal.",
-    "You deserve all the love and care. I’m sending you all of mine.",
-    "Wishing you comfort and peace as you heal. I’m always here for you.",
-    "Sending you positive energy and all my love for a speedy recovery.",
-    "Take good care of yourself. You’ll be back to your amazing self soon.",
-    "You are in my thoughts, and I’m sending you healing and love.",
-    "Rest and take care, love. You’ll feel better soon, I promise.",
-    "Sending you love, strength, and healing. You’re in my heart.",
-    "Take all the time you need to heal. I’ll be here when you’re feeling better.",
-    "Get well soon, love. I’m always here if you need me.",
-    "You are so important to me. Take care of yourself, and I’ll be here for you.",
-    "You’re stronger than you know. Rest and feel better soon.",
-    "I hope you feel better soon. I’m sending all my love your way.",
-    "Focus on resting and getting better, love. You’ve got this.",
-    "I’m here to support you through your recovery. Take care of yourself.",
-    "Sending you healing thoughts, love. I hope you feel better soon.",
-    "I’m so thankful for you, and I hope you get better soon.",
-    "Take it easy, love. I’m thinking of you and sending healing vibes.",
-    "You’ve got this, love. Rest and take care. You’ll be back on your feet soon."
-  ],
-  achieve: [
-    "I'm so proud of you! You've worked hard for this moment.",
-    "Your dedication and hard work have paid off, and I couldn't be happier for you.",
-    "This achievement is a reflection of how amazing you are. I'm so proud!",
-    "You’ve accomplished something incredible, and I’m here cheering you on!",
-    "Look at you go! Keep achieving your dreams, love. You’ve got this.",
-    "Every step you take is leading you toward greatness. I'm proud of you!",
-    "Your achievements inspire me every day. I’m so lucky to have you in my life.",
-    "You are unstoppable! I’m so proud of everything you’ve accomplished.",
-    "I knew you could do it! You’ve shown so much strength and determination.",
-    "Your hard work never goes unnoticed, and I’m beyond proud of you.",
-    "You’ve reached a milestone, and I’m so happy to see you shine.",
-    "This achievement is just the beginning. Keep going, love. I believe in you.",
-    "Your success is well-deserved, and I’m here to celebrate you!",
-    "You’ve earned this, and I’m so proud of everything you’ve achieved.",
-    "Every challenge you overcome brings you closer to your goals. I’m so proud of you.",
-    "You inspire me with your perseverance. This is just the start of something amazing.",
-    "I’m in awe of everything you’ve achieved. Keep going—you’re unstoppable!",
-    "You’ve worked so hard, and now you get to enjoy the fruits of your labor.",
-    "Your success makes my heart so full. Keep chasing your dreams, love.",
-    "I couldn’t be prouder of everything you’ve accomplished. You are amazing.",
-    "This achievement is a testament to your strength and dedication. Keep shining!",
-    "I'm so proud of the person you’re becoming. Your hard work is paying off.",
-    "You’ve done it! Your achievement is an inspiration to all of us.",
-    "Look at what you’ve accomplished! You’re capable of amazing things.",
-    "I’m constantly amazed by your drive and ambition. Keep reaching for the stars.",
-    "You’ve earned this success, and I’ll always be here to cheer you on.",
-    "This achievement is a reflection of your passion and commitment. I’m so proud.",
-    "Every accomplishment you make fills my heart with joy. Keep up the great work.",
-    "You're an inspiration, and I’m so happy to see you achieve your dreams.",
-    "You’ve proven that hard work and determination lead to amazing results.",
-    "Keep going, love. You’re on the path to greatness, and I’m here cheering you on.",
-    "You’ve worked so hard, and I couldn’t be prouder of everything you’ve achieved.",
-    "This moment is just a stepping stone to even bigger accomplishments. Keep it up!",
-    "I’m so excited to see where your hard work takes you next. You’re doing amazing.",
-    "You’ve reached your goal, and I’m beyond proud of how far you’ve come.",
-    "You’ve earned every bit of this success, and I’m so proud of you.",
-    "Every success is a testament to your strength and persistence. You’re amazing.",
-    "You inspire me every day with your determination and drive. Keep going!",
-    "Your achievement is proof that anything is possible with hard work. I’m so proud.",
-    "I can’t wait to see what you’ll achieve next. You’re unstoppable!",
-    "Every step you take brings you closer to even greater things. Keep going, love.",
-    "This is just the beginning, and I’m so proud to be here with you every step of the way.",
-    "Look at everything you’ve achieved! You’re a true inspiration to everyone around you.",
-    "I’m so proud of you for staying focused and determined to reach your goals.",
-    "Your success today will pave the way for even bigger accomplishments tomorrow.",
-    "Your hard work has paid off, and I’m beyond proud of what you’ve achieved.",
-    "You are living proof that dreams come true with perseverance. I’m so proud of you.",
-    "Seeing you succeed fills my heart with so much joy. You’re capable of amazing things.",
-    "You’ve accomplished something truly special. I’m so happy for you!",
-    "I admire your drive and passion. Keep striving for greatness—you’re doing amazing.",
-    "Your success today is just the start of an incredible journey. Keep going!",
-    "You’ve shown so much dedication, and I’m so proud of everything you’ve achieved.",
-    "This is such a big milestone, and I’m so excited for all the amazing things to come.",
-    "I’m so proud of your accomplishments, and I know there’s so much more to come.",
-    "Your journey has been inspiring, and I’m so proud to witness your success.",
-    "Your hard work has led to something amazing, and I’m here to celebrate it with you.",
-    "Keep going, love. Your future is bright, and I’m here cheering you on every step of the way.",
-    "I can’t wait to see what you’ll do next. You are capable of achieving anything.",
-    "Your achievement is a reflection of your strength, and I couldn’t be prouder.",
-    "I’m so happy to see you achieve your dreams. You’re truly amazing.",
-    "You’ve accomplished so much, and I know you’ll keep going and achieving even more.",
-    "Look at how far you’ve come! This achievement is just the beginning of your greatness.",
-    "I’m in awe of everything you’ve done. Your dedication is truly inspiring.",
-    "You are capable of so much, and today is a testament to your hard work. Well done, love.",
-    "Every success you achieve makes me so proud. Keep striving for more!",
-    "I’m constantly amazed by your strength and ambition. Keep going, you’re doing great.",
-    "This achievement is a reflection of your hard work, and I’m so proud of you.",
-    "You’ve earned this success, and I can’t wait to see what you achieve next.",
-    "Every milestone you reach is a testament to your hard work and determination.",
-    "I’m so proud of you for reaching this achievement. You’re destined for greatness.",
-    "Your success today is just the beginning of the amazing things to come. Keep going!",
-    "I’m so proud of how far you’ve come. Your hard work is paying off, and I’m here cheering you on.",
-    "This is just the start. Keep reaching for your goals, love, and I’ll always be here to support you.",
-    "You’re amazing, and I’m so proud of what you’ve achieved. Keep going, you’re unstoppable!",
-    "You’ve earned every success that comes your way. I’m so proud of you!",
-    "You inspire me every day. Your determination and drive are incredible. Keep it up!",
-    "This achievement is a testament to your dedication and strength. I’m so proud of you!",
-    "I’m so proud of you for achieving your dreams. Keep going—you’re doing amazing things.",
-    "You’ve worked so hard, and today you’ve proven that anything is possible.",
-    "I’m amazed by everything you’ve accomplished. You’re unstoppable, love.",
-    "You’re capable of achieving so much, and today is proof of your strength and determination.",
-    "Your success makes my heart so full. I’m incredibly proud of everything you’ve done.",
-    "You’ve proven that with hard work, anything is possible. Keep shining, love!",
-    "I’m so proud of you for pushing through and reaching this incredible milestone."
-    ]
-  };
-  
-    let currentMessageIndex = 0;
-    let currentMessages = [];
+        document.querySelectorAll(".options button").forEach(button => {
+            button.addEventListener("click", () => {
+                const option = button.getAttribute("data-option");
+                currentMessages = messages[option];
+                currentMessageIndex = 0;
+                showMessage();
+            });
+        });
 
-    function showMessages(type) {
-      currentMessages = messages[type];
-      currentMessageIndex = 0;
-      const options = document.getElementById('options');
-      const messageBox = document.getElementById('message-box');
-      const message = document.getElementById('message');
-      const nextButton = document.getElementById('next-button');
+        document.getElementById("next").addEventListener("click", () => {
+            if (currentMessageIndex < currentMessages.length - 1) {
+                currentMessageIndex++;
+                showMessage();
+            }
+        });
 
-    
-        options.style.display = 'none';
-        messageBox.style.display = 'block';
-        message.textContent = currentMessages[currentMessageIndex]; // Correctly set the message content
-        nextButton.style.display = currentMessages.length > 1 ? 'block' : 'none';
-    }
-}
-    function nextMessage() {
-      const message = document.getElementById('message');
-      if (currentMessageIndex < currentMessages.length - 1) {
-        currentMessageIndex++;
-        message.innerHTML = currentMessages[currentMessageIndex];
-      } else {
-        nextButton.style.display = 'none';
-      }
-    }
+        document.getElementById("back").addEventListener("click", () => {
+            if (currentMessageIndex > 0) {
+                currentMessageIndex--;
+                showMessage();
+            }
+        });
 
-    function goBack() {
-      const options = document.getElementById('options');
-      const messageBox = document.getElementById('message-box');
-      const nextButton = document.getElementById('next-button');
+        function showMessage() {
+            const messageBox = document.getElementById("message-box");
+            const message = document.getElementById("message");
+            const nextButton = document.getElementById("next");
+            const backButton = document.getElementById("back");
 
-      options.style.display = 'block';
-      messageBox.style.display = 'none';
-      nextButton.style.display = 'none';
-    }
+            message.innerText = currentMessages[currentMessageIndex];
+            nextButton.style.display = currentMessageIndex < currentMessages.length - 1 ? "inline-block" : "none";
+            backButton.style.display = currentMessageIndex > 0 ? "inline-block" : "none";
+        }
 
+        document.getElementById("heart").addEventListener("click", () => {
+            const heartsContainer = document.getElementById("hearts");
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.innerText = "💖";
+            heartsContainer.appendChild(heart);
 
-    function throwHearts() {
-      for (let i = 0; i < 20; i++) {
-        const heart = document.createElement('div');
-        heart.textContent = '❤️';
-        heart.className = 'heart-animation';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.top = '100vh';
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-          heart.remove();
-        }, 2000);
-      }
-
-      setTimeout(() => {
-        alert("I love you so much, and I will never leave you. You are my everything.");
-      }, 2000);
-    }
-  </script>
+            setTimeout(() => {
+                heartsContainer.removeChild(heart);
+                alert(heartMessages[Math.floor(Math.random() * heartMessages.length)]);
+            }, 2000);
+        });
+    </script>
 </body>
 </html>
