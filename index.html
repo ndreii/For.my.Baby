@@ -9,8 +9,9 @@
         body {
             font-family: Arial, sans-serif;
             margin: 0;
-            background-color: #f4f4f4;
+            background: linear-gradient(to bottom, #f4f4f4, #ffe6e6);
             color: #333;
+            overflow-x: hidden;
         }
 
         .container {
@@ -18,13 +19,13 @@
             margin: 50px auto;
             padding: 20px;
             max-width: 600px;
-            background-color: white;
+            background-color: #fff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
             border-radius: 10px;
         }
 
         h1 {
-            color: red;
+            color: #e63946;
         }
 
         .options button {
@@ -32,15 +33,39 @@
             padding: 10px 15px;
             border: none;
             border-radius: 5px;
-            background: linear-gradient(to right, green, red);
+            background: linear-gradient(to right, #2ecc71, #e74c3c);
             color: white;
             font-weight: bold;
             cursor: pointer;
-            transition: transform 0.2s;
+            transition: transform 0.2s, background-color 0.3s;
         }
 
         .options button:hover {
             transform: scale(1.1);
+            background: linear-gradient(to right, #3498db, #9b59b6);
+        }
+
+        /* Message Box */
+        #message-box {
+            margin-top: 20px;
+            font-size: 18px;
+            min-height: 60px;
+        }
+
+        .nav-buttons button {
+            margin: 5px;
+            padding: 5px 10px;
+            font-size: 16px;
+            border: none;
+            border-radius: 5px;
+            background-color: #3498db;
+            color: white;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .nav-buttons button:hover {
+            background-color: #2980b9;
         }
 
         /* Heart Button */
@@ -51,14 +76,18 @@
         #heart {
             font-size: 25px;
             cursor: pointer;
-            background: linear-gradient(to right, blue, black);
+            background: linear-gradient(to right, #1e90ff, #2c3e50);
             border: none;
             color: white;
             padding: 10px;
             border-radius: 50%;
+            transition: transform 0.3s;
         }
 
-        /* Thrown Hearts Animation */
+        #heart:hover {
+            transform: scale(1.2);
+        }
+
         #hearts {
             position: relative;
             height: 100px;
@@ -67,6 +96,7 @@
         .heart {
             position: absolute;
             animation: floatUp 2s ease-in-out infinite;
+            font-size: 20px;
         }
 
         @keyframes floatUp {
@@ -80,7 +110,7 @@
             }
         }
 
-        /* Dino Style */
+        /* Dino */
         .dino {
             position: fixed;
             bottom: 20px;
@@ -89,7 +119,7 @@
 
         .dino-text {
             font-size: 18px;
-            color: black;
+            color: #2c3e50;
             animation: fadeInOut 4s infinite;
         }
 
@@ -100,6 +130,20 @@
             50% {
                 opacity: 1;
             }
+        }
+
+        /* Background Dinosaurs and Cats */
+        .background {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            z-index: -1;
+            background-image: url('https://i.imgur.com/DpN0mFk.png'), url('https://i.imgur.com/cQJsq0T.png');
+            background-size: 50px 50px, 50px 50px;
+            background-repeat: repeat, repeat;
+            opacity: 0.2;
         }
     </style>
 </head>
@@ -195,6 +239,7 @@
             const heart = document.createElement("div");
             heart.className = "heart";
             heart.innerText = "💖";
+            heart.style.left = Math.random() * 100 + "%";
             heartsContainer.appendChild(heart);
 
             setTimeout(() => {
