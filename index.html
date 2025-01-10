@@ -987,15 +987,14 @@ unwell: [
     let currentMessages = [];
 
     function showMessages(type) {
-    if (messages[type]) {
-        currentMessages = messages[type];
-        currentMessageIndex = 0;
+      currentMessages = messages[type];
+      currentMessageIndex = 0;
+      const options = document.getElementById('options');
+      const messageBox = document.getElementById('message-box');
+      const message = document.getElementById('message');
+      const nextButton = document.getElementById('next-button');
 
-        const options = document.getElementById('options');
-        const messageBox = document.getElementById('message-box');
-        const message = document.getElementById('message');
-        const nextButton = document.getElementById('next-button');
-
+    
         options.style.display = 'none';
         messageBox.style.display = 'block';
         message.textContent = currentMessages[currentMessageIndex]; // Correctly set the message content
@@ -1003,34 +1002,39 @@ unwell: [
     }
 }
     function nextMessage() {
-    currentMessageIndex++;
-    if (currentMessageIndex < currentMessages.length) {
-        document.getElementById('message').textContent = currentMessages[currentMessageIndex];
-    } else {
-        currentMessageIndex = 0;
-        document.getElementById('message').textContent = currentMessages[currentMessageIndex];
+      const message = document.getElementById('message');
+      if (currentMessageIndex < currentMessages.length - 1) {
+        currentMessageIndex++;
+        message.innerHTML = currentMessages[currentMessageIndex];
+      } else {
+        nextButton.style.display = 'none';
+      }
     }
-}
 
     function goBack() {
-    document.getElementById('options').style.display = 'block';
-    document.getElementById('message-box').style.display = 'none';
-}
-  }
+      const options = document.getElementById('options');
+      const messageBox = document.getElementById('message-box');
+      const nextButton = document.getElementById('next-button');
+
+      options.style.display = 'block';
+      messageBox.style.display = 'none';
+      nextButton.style.display = 'none';
+    }
+
 
     function throwHearts() {
-    const heart = document.createElement('div');
-    heart.className = 'heart-animation';
-    heart.textContent = '❤️';
-    document.body.appendChild(heart);
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.textContent = '❤️';
+        heart.className = 'heart-animation';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = '100vh';
+        document.body.appendChild(heart);
 
-    heart.style.left = Math.random() * 100 + 'vw';
-    heart.style.animationDuration = Math.random() * 2 + 3 + 's';
-
-    setTimeout(() => {
-        heart.remove();
-    }, 5000);
-}
+        setTimeout(() => {
+          heart.remove();
+        }, 2000);
+      }
 
       setTimeout(() => {
         alert("I love you so much, and I will never leave you. You are my everything.");
